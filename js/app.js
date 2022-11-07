@@ -1,44 +1,21 @@
-//Array o Arreglos
-//listas
-let alumnos = ["Jimena", "Juan", "Nicolás", "Lucas", "Gabriela"];
+//funciones
 
-//Mostrar un elemento
-console.log(alumnos[2]);
+//Procedimientos encapsulados
 
-//Obtener la cantidad de elementos
-console.log(alumnos.length);
+// function <nombre>(<parametros>){
 
-//mostrar el último elemento
-console.log(alumnos[alumnos.length - 1]);
-console.log("Obteniendo elementos con at:", alumnos.at(-1));
+//   //instrucciones
+// }
 
-//Concatenar string con arreglo
-console.log(`Los alumnos más copados son: ${alumnos.join(", ")}`);
+//Tipos
+//funciones declarativas
+let nombre = "Santiago";
+let apellido = "Gonzalez";
 
-//Iterar un arreglo
-for (let i = 0; i < alumnos.length; i++) {
-  console.log(`Hola soy ${alumnos[i]} `);
+function saludarPersona(param1, param2) {
+  console.log(`Hola ${param1} ${param2}`);
 }
 
-//Agregar elementos en un arreglo
-alumnos.push("Renzo", "Facundo"); //al final
-alumnos.unshift("Joaquin"); //al principio
+saludarPersona("pepito", "calamardo");
 
-//Eliminar elementos
-alumnos.pop(); //al final
-alumnos.shift(); //al principio
-
-//Obtener el índice o posición
-let pos = alumnos.indexOf("Lucas");
-
-//Saber si un elemento está en el arreglo
-console.log(alumnos.includes("Jimena"));
-
-//Eliminar un elemento según su posición
-alumnos.splice(2, 1);
-
-//Agregar elementos desde una posición
-alumnos.splice(1, 0, "Facundo", "Gonzalo");
-
-//modificar elementos
-alumnos.splice(4, 2, "Ivan", "Rocio");
+//funciones anónimas o de expresión
