@@ -1,153 +1,120 @@
-//funciones
+//callbacks
 
-//Procedimientos encapsulados
+const numeros = [37, 11, 2, 15, 56, 52, 8, 48, 100];
 
-// function <nombre>(<parametros>){
+let numerosOrdenados = numeros.sort((a, b) => a - b);
 
-//   //instrucciones
-// }
+//filter
+//crea un nuevo arreglo con los elementos que cumplen la condición dada.
+let pares = numeros.filter((numero) => numero % 2 === 0);
 
-//Tipos
-//funciones declarativas
-let nombre = "Santiago";
-let apellido = "Gonzalez";
+//find
+//devuelve el valor del primer elemento que cumple la condición dada.
+let alumnos = ["Jimena", "Juan", "Nicolás", "Lucas", "Gabriela"];
 
-function saludarPersona(param1, param2) {
-  console.log(`Hola ${param1} ${param2}`);
-}
+let resultadoBusqueda = alumnos.find((alumno) => {
+  return alumno === "Lucas";
+});
 
-saludarPersona("pepito", "calamardo");
+let resultadoBusquedaNumeros = numeros.find((numero) => {
+  return numero <= 50;
+});
 
-//función con parámetros por defecto
-function sumarValores(valor1 = 10, valor2 = 20) {
-  if (isNaN(valor1) || isNaN(valor2)) {
-    //no es un numero
-    console.warn("Alguno de los valores no es un número");
-  } else {
-    console.log(`${valor1} + ${valor2} = ${valor1 + valor2} `); //3 + 2
-  }
-}
+//findIndex
+let indice = alumnos.findIndex((alumno) => {
+  return alumno === "Nicolás";
+});
 
-//funciones anónimas o de expresión
-const saludarAlumno = function (nombre = "desconocido") {
-  console.log(`Bienvenid@ ${nombre} 👍`);
-};
+//forEach
+alumnos.forEach((alumno) => {
+  let nombreMayus = alumno.toUpperCase();
+  console.log(`Hola, soy ${nombreMayus}`);
+});
 
-saludarAlumno("José");
-
-//Ejercicio
-let valor1 = 3;
-let valor2 = 55;
-const calculadora = function (operador) {
-  switch (operador) {
-    case "+":
-    case "suma":
-      console.log(`${valor1} + ${valor2} = ${valor1 + valor2} `);
-      break;
-    case "-":
-    case "resta":
-      console.log(`${valor1} - ${valor2} = ${valor1 - valor2} `);
-      break;
-    case "x":
-    case "multiplicación":
-      console.log(`${valor1} x ${valor2} = ${valor1 * valor2} `);
-      break;
-    case "/":
-    case "división":
-      console.log(`${valor1} / ${valor2} = ${valor1 / valor2} `);
-      break;
-    default:
-      console.warn("La operación ingresada no existe");
-      break;
-  }
-};
-
-//Diferencias entre declarativas y anónimas
-
-// calcularDescuento(3500, 25);
-// calcularDescuento2(3500, 25);
-
-function calcularDescuento(precio, descuento = 15) {
-  let descuentoCalculado = 100 - descuento; //100 - 15
-  let montoConDescuento = (precio * descuentoCalculado) / 100;
-
-  console.log(`El importe a abonar es de ${montoConDescuento}`);
-}
-
-const calcularDescuento2 = function (precio, descuento = 15) {
-  let descuentoCalculado = 100 - descuento; //100 - 15
-  let montoConDescuento = (precio * descuentoCalculado) / 100;
-
-  console.log(`El importe a abonar es de ${montoConDescuento}`);
-};
-
-//return
-//Detiene la ejecución
-// Devuelve un resultado o un valor
-
-const calcularDescuentoReturn = function (precio, descuento = 15) {
-  let descuentoCalculado = 100 - descuento; //100 - 15
-  let montoConDescuento = (precio * descuentoCalculado) / 100;
-
-  return montoConDescuento;
-};
-
-console.log("El precio con descuento es de $", calcularDescuentoReturn(400));
-
-// function cubo(num) {
-//   return Math.pow(num, 3);
-// }
-
-const cubo = function (num) {
-  return Math.pow(num, 3);
-};
-
-//Funcion de flecha o Arrow Function
-const cuboArrow = (num) => Math.pow(num, 3);
-
-const calculadoraArrow = (valor1, valor2, operador) => {
-  switch (operador) {
-    case "+":
-    case "suma":
-      return `${valor1} + ${valor2} = ${valor1 + valor2}`;
-    case "-":
-    case "resta":
-      return `${valor1} - ${valor2} = ${valor1 - valor2}`;
-    case "x":
-    case "multiplicación":
-      return `${valor1} x ${valor2} = ${valor1 * valor2}`;
-    case "/":
-    case "división":
-      return `${valor1} / ${valor2} = ${valor1 / valor2}`;
-    default:
-      return "La operación ingresada no existe";
-  }
-};
-
-//SCOPE Global
-let heroe = "Superman";
-
-const presentarHeroe = () => {
-  //SCOPE local
-  let heroe = "Batman";
-
-  return `Bienvenido ${heroe}`;
-};
+//map
+//Crea un nuevo arreglo con los resultados del callback aplicado a cada elemento
+let numerosDobles = numeros.map((numero) => numero * 2);
 
 //Tarea 1
+//Dado 3 arreglos de números unir todos en uno solo y ordenarlos de mayor a menor
+let numeros1 = [13, 456, 786, 23, 45];
+let numeros2 = [67, 3, 5];
+let numeros3 = [90, 1245, 56000];
+
+const tarea1 = () => {
+  let numerosParaOrdenar = numeros3.concat(numeros1, numeros2);
+
+  return numerosParaOrdenar.sort((a, b) => a - b).reverse();
+};
+
+console.log(tarea1());
+
 /*
-Definir una función que muestre información sobre una cadena de texto que se le pasa como argumento. 
-- A partir de la cadena que se le pasa, la función determina si esa cadena está formada sólo por mayúsculas, sólo por minúsculas o por una mezcla de ambas.
+Tarea 2
+---------
+  Filtrar de un arreglo de personas todos los nombres que contengan la letra "m"
 */
 
-const examinarCadena = (frase) => {
-  if (frase === frase.toUpperCase()) {
-    return "La frase está en mayúsculas";
-  }
+let personas = [
+  "Joaquín",
+  "Daniel",
+  "Magdalena",
+  "Gonzalo",
+  "Armando",
+  "Samuel",
+  "Valentina",
+];
 
-  if (frase === frase.toLowerCase()) {
-    return "La frase está en minúsculas";
-  }
+const obtenerNombresPorLetra = (letra) => {
+  let nombres = personas.filter((persona) => {
+    return persona.toUpperCase().includes(letra.toUpperCase());
+  });
 
-  return "La frase tiene mayúsculas y minúsculas";
+  return nombres;
 };
+
+// Tarea 3
+// ----------
+// Tomar una lista de lenguajes de programación y mostrar en consola una lista ordenada con los nombres ordenados alfabéticamente y en mayúsculas sin mutar el arreglo original.
+
+let lenguajes = ["javascript", "python", "c++", "c#", "java", ".net"];
+
+const ordenarLenguajes = () => {
+  let lenguajesOrdenados = lenguajes.slice(0);
+  lenguajesOrdenados.sort().forEach((lenguaje, index) => {
+    console.log(`${index + 1} - ${lenguaje.toUpperCase()}`);
+  });
+};
+
+//Aplicación de lista de compras
+
+/*
+- Agregar un producto a la lista
+- Listar los productos de la lista numerados
+- Eliminar un producto de la lista por su indice
+- Buscar un producto
+- Filtrar productos por una letra o palabra
+*/
+
+const lista = [];
+
+//agregar un producto
+const agregarProducto = () => {};
+
+//listar productos
+const listarProductos = () => {};
+
+//borrar producto
+const borrarProducto = (producto) => {};
+
+//Buscar un producto
+const buscarProducto = (producto) => {};
+
+//filtrar productos
+const filtrarProductos = (termino) => {};
+
+//Modificar un producto
+const modificarProducto = (producto) => {};
+
+//CRUD
+//Create Read Update Delete
