@@ -140,9 +140,9 @@ let jose = new Persona("José Gonzalez", 60, "Masculino", 80, 1.8, 1962);
 let maximiliano = new Persona(
   "Maxi Rodriguez",
   25,
-  "14345678",
   "Masculino",
   71,
   1.7,
-  1997
+  1997,
+  "14345678"
 );
