@@ -61,16 +61,6 @@ const listarUsuarios = () => {
     }
   });
 
-  // console.log(usuarios);
-  // console.log(usuarios.sort((a, b) => b.apellido - a.apellido));
-
-  // let usuarios = data.map((usuario) => {
-  //   return `${usuario.last_name} ${usuario.first_name}`;
-  // });
-
-  // const usuariosOrdenados = usuarios.sort((a, b) => a.localeCompare(b));
-  // console.log(usuariosOrdenados);
-
   usuarios.forEach((usuario, index) => {
     console.log(`${index + 1} - ${usuario.nombre} ${usuario.apellido}`);
   });

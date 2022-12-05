@@ -1,0 +1,7 @@
+.img-avatar {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 100%;
+  padding: 10px;
+}
