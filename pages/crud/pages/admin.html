@@ -70,7 +70,7 @@
       </div>
       <div class="row mb-5">
         <div class="col-12 col-md-8 offset-md-2 borde_form">
-          <form onsubmit="">
+          <form onsubmit="guardarProducto(event)">
             <div class="row mb-2">
               <div class="col">
                 <label>Título</label>
@@ -157,7 +157,14 @@
                 <th></th>
               </tr>
             </thead>
-            <tbody id="cuerpo-tabla"></tbody>
+            <tbody id="cuerpo-tabla">
+              <!-- <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr> -->
+            </tbody>
           </table>
         </div>
       </div>
@@ -267,6 +274,7 @@
       crossorigin="anonymous"
     ></script>
     <!-- <script src="./app.js"></script> -->
+    <script src="../js/global.js"></script>
     <script src="../js/admin.js"></script>
     <script src="https://use.fontawesome.com/c2813ccf5b.js"></script>
   </body>
