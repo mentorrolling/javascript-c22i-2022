@@ -1,0 +1,17 @@
+.puntero {
+  cursor: pointer;
+}
+
+label {
+  font-weight: bold;
+}
+
+textarea {
+  resize: none;
+}
+
+.borde_form {
+  border: 1px solid #ced4da;
+  padding: 20px;
+  border-radius: 10px;
+}

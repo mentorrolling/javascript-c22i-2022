@@ -1,0 +1,16 @@
+.img-tarjeta {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  padding: 10px;
+}
+
+.contenedor-img {
+  height: 300px;
+}
+
+.login-cabecera {
+  height: 200px;
+  object-fit: cover;
+}
