@@ -7,11 +7,32 @@ const myModal = new bootstrap.Modal(document.getElementById("productoModal"));
 let productos = JSON.parse(localStorage.getItem("productos")) || [];
 let indexUpdate = null;
 
+const validarUsuario = () => {
+  let usuario = JSON.parse(localStorage.getItem("user")) || null;
+
+  if (usuario) {
+    cargarTabla();
+  } else {
+    main.innerHTML = "";
+
+    let col = document.createElement("div");
+    col.classList = "row mt-3";
+
+    let contenido = `<div class="col"><div class="alert alert-danger" role="alert">
+    No tiene permisos para acceder a esta página
+  </div>
+  </div>
+  `;
+    col.innerHTML = contenido;
+    main.append(col);
+  }
+};
+
 //Cargar la tabla
 
 const cargarTabla = () => {
   cuerpoTabla.innerHTML = "";
-  productos.forEach((producto) => {
+  productos.forEach((producto, index) => {
     let tableRow = document.createElement("tr");
     let contenidoHtml = `<th scope="row">${producto.title}</th>
     <td>${producto.description}</td>
@@ -20,7 +41,7 @@ const cargarTabla = () => {
     <td>
     <div class="d-flex gap-2">
     <i class="fa fa-pencil text-success puntero" onclick="abrirModal(${producto.id})" aria-hidden="true"></i>
-    <i class="fa fa-trash-o text-danger puntero" onclick="eliminarProducto(${producto.id})" aria-hidden="true"></i>
+    <i class="fa fa-trash-o text-danger puntero" onclick="eliminarProducto(${index})" aria-hidden="true"></i>
     </div>
     </td>
     `;
@@ -69,17 +90,18 @@ const guardarProducto = (event) => {
 };
 
 //Eliminar producto
-const eliminarProducto = (id) => {
-  let nuevoArreglo = productos.filter((producto) => {
-    return producto.id != id;
-  });
+const eliminarProducto = (index) => {
+  // let nuevoArreglo = productos.filter((producto) => {
+  //   return producto.id != productos[index].id;
+  // });
 
   let validar = confirm(
-    `Esta seguro que desea eliminar el producto con el id ${id}`
+    `Esta seguro que desea eliminar el producto ${productos[index].title}`
   );
 
   if (validar) {
-    productos = [...nuevoArreglo]; //spread
+    productos.splice(index, 1);
+    // productos = [...nuevoArreglo]; //spread
     localStorage.setItem("productos", JSON.stringify(productos));
     cargarTabla();
   }
@@ -88,13 +110,11 @@ const eliminarProducto = (id) => {
   // const index = productos.findIndex((item) => {
   //   return item.id == id;
   // });
-
-  // productos.splice(index,1)
 };
 
 //Abrir un modal con los datos
 const abrirModal = (id) => {
-  console.log(id);
+  // console.log(id);
   indexUpdate = productos.findIndex((item) => {
     return item.id == id;
   });
@@ -106,9 +126,24 @@ const abrirModal = (id) => {
     productos[indexUpdate].category;
   document.querySelector("#precioModal").value = productos[indexUpdate].price;
   document.querySelector("#imagenModal").value = productos[indexUpdate].image;
-  console.log(indexUpdate);
+
   myModal.show();
 };
 //Actualizar producto
+const actualizarProducto = (event) => {
+  event.preventDefault();
+  productos[indexUpdate].title = document.querySelector("#tituloModal").value;
+  productos[indexUpdate].description =
+    document.querySelector("#descripcionModal").value;
+  productos[indexUpdate].category =
+    document.querySelector("#categoriaModal").value;
+  productos[indexUpdate].price = document.querySelector("#precioModal").value;
+  productos[indexUpdate].image = document.querySelector("#imagenModal").value;
 
-cargarTabla();
+  localStorage.setItem("productos", JSON.stringify(productos));
+
+  cargarTabla();
+  myModal.hide();
+};
+
+validarUsuario();
