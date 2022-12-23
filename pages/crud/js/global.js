@@ -21,13 +21,17 @@ class Producto {
 let btnLogin = document.querySelector("#btn-login");
 let usuario = JSON.parse(localStorage.getItem("user")) || null;
 
-if (usuario) {
-  btnLogin.innerText = usuario;
-} else {
-  btnLogin.innerText = "Inicio de sesión";
+if (btnLogin) {
+  if (usuario) {
+    btnLogin.innerText = usuario;
+  } else {
+    btnLogin.innerText = "Inicio de sesión";
+  }
+
+  document.querySelector("#btn-login").addEventListener("click", sesion);
 }
 
-const sesion = () => {
+function sesion() {
   if (usuario) {
     localStorage.removeItem("user");
     btnLogin.innerText = "Inicio de sesión";
@@ -35,7 +39,7 @@ const sesion = () => {
   } else {
     location.replace("http://127.0.0.1:5500/pages/crud/pages/login.html");
   }
-};
+}
 
 const marcarFavorito = (id) => {
   let index = productos.findIndex((item) => {
@@ -47,5 +51,3 @@ const marcarFavorito = (id) => {
 
   listarProductos();
 };
-
-document.querySelector("#btn-login").addEventListener("click", sesion);
