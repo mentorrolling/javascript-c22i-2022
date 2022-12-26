@@ -102,7 +102,11 @@ const listarProductos = () => {
     }">
     </div>
 <div class="card-body">
-  <h5 class="card-title">${item.title}</h5>
+  <h5 class="card-title">
+ <a class="nav-link" href="./pages/producto.html?id=${item.id}" >
+  ${item.title}
+  </a>
+  </h5>
   <div class="text-muted puntero" >
   <i class="${
     item.favorito ? "fa fa-star fa-2x" : "fa fa-star-o fa-2x"
